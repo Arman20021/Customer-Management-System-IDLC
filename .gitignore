@@ -1,0 +1,22 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# .NET build folders
+bin/
+obj/
+
+# Build output
+Debug/
+Release/
+
+# Rider
+.idea/
+
+# Logs
+*.log
+
+# Secrets
+.env
+appsettings.Production.json
