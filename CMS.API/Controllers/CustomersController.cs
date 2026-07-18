@@ -11,19 +11,25 @@ public class CustomersController : ControllerBase
     private readonly CustomerService customerService;
     private readonly GetAllCustomersService getAllCustomersService;
     private readonly UpdateCustomerService updateCustomerService;
+    private readonly DeleteCustomerService deleteCustomerService;
 
     public CustomersController(
         CustomerService customerService,
         GetAllCustomersService getAllCustomersService,
-        UpdateCustomerService updateCustomerService)
+        UpdateCustomerService updateCustomerService,
+        DeleteCustomerService deleteCustomerService)
     {
-        this.customerService = customerService;
+        this.customerService =
+            customerService;
 
         this.getAllCustomersService =
             getAllCustomersService;
 
         this.updateCustomerService =
             updateCustomerService;
+
+        this.deleteCustomerService =
+            deleteCustomerService;
     }
 
     [HttpPost("create-customer")]
@@ -165,6 +171,44 @@ public class CustomersController : ControllerBase
         catch (InvalidOperationException exception)
         {
             return Conflict(new
+            {
+                message = exception.Message
+            });
+        }
+        catch (Exception)
+        {
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new
+                {
+                    message =
+                        "An unexpected server error occurred."
+                });
+        }
+    }
+
+    [HttpDelete("delete-customer/{id:int}")]
+    public IActionResult DeleteCustomer(int id)
+    {
+        try
+        {
+            DeleteCustomerResponse? response =
+                deleteCustomerService.DeleteCustomer(id);
+
+            if (response == null)
+            {
+                return NotFound(new
+                {
+                    message =
+                        $"Customer with ID {id} was not found."
+                });
+            }
+
+            return Ok(response);
+        }
+        catch (ArgumentException exception)
+        {
+            return BadRequest(new
             {
                 message = exception.Message
             });

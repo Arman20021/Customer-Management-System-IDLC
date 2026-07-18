@@ -36,6 +36,10 @@ builder.Services.AddScoped<GetAllCustomersService>();
 builder.Services.AddScoped<UpdateCustomerRepository>();
 builder.Services.AddScoped<UpdateCustomerService>();
 
+
+builder.Services.AddScoped<DeleteCustomerRepository>();
+builder.Services.AddScoped<DeleteCustomerService>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
