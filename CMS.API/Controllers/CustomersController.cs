@@ -5,17 +5,23 @@ using Microsoft.AspNetCore.Mvc;
 namespace CMS.API.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/customer-management")]
 public class CustomersController : ControllerBase
 {
     private readonly CustomerService customerService;
+    private readonly GetAllCustomersService getAllCustomersService;
 
-    public CustomersController(CustomerService customerService)
+    public CustomersController(
+        CustomerService customerService,
+        GetAllCustomersService getAllCustomersService)
     {
         this.customerService = customerService;
+
+        this.getAllCustomersService =
+            getAllCustomersService;
     }
 
-    [HttpPost]
+    [HttpPost("create-customer")]
     public IActionResult CreateCustomer(
         CreateCustomerRequest request)
     {
@@ -25,7 +31,7 @@ public class CustomersController : ControllerBase
                 customerService.CreateCustomer(request);
 
             return Created(
-                $"/api/customers/{response.CustomerId}",
+                $"/api/customer-management/get-customer-by-id/{response.CustomerId}",
                 response);
         }
         catch (ArgumentException exception)
@@ -53,7 +59,7 @@ public class CustomersController : ControllerBase
         }
     }
 
-    [HttpGet("{id:int}")]
+    [HttpGet("get-customer-by-id/{id:int}")]
     public IActionResult GetCustomerById(int id)
     {
         try
@@ -71,6 +77,36 @@ public class CustomersController : ControllerBase
             }
 
             return Ok(customer);
+        }
+        catch (ArgumentException exception)
+        {
+            return BadRequest(new
+            {
+                message = exception.Message
+            });
+        }
+        catch (Exception)
+        {
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new
+                {
+                    message =
+                        "An unexpected server error occurred."
+                });
+        }
+    }
+
+    [HttpPost("get-all-customers")]
+    public IActionResult GetAllCustomers(
+    [FromQuery] GetAllCustomersRequest request)
+    {
+        try
+        {
+            PagedCustomerResponse response =
+                getAllCustomersService.GetAllCustomers(request);
+
+            return Ok(response);
         }
         catch (ArgumentException exception)
         {

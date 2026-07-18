@@ -60,4 +60,10 @@ public class CustomerRepository
             .FirstOrDefault(customer =>
                 customer.CustomerId == customerId);
     }
+
+
+    //To get all the Customer
+
+
+
 }
