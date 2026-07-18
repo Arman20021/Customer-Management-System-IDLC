@@ -52,4 +52,42 @@ public class CustomersController : ControllerBase
                 });
         }
     }
+
+    [HttpGet("{id:int}")]
+    public IActionResult GetCustomerById(int id)
+    {
+        try
+        {
+            GetCustomerResponse? customer =
+                customerService.GetCustomerById(id);
+
+            if (customer == null)
+            {
+                return NotFound(new
+                {
+                    message =
+                        $"Customer with ID {id} was not found."
+                });
+            }
+
+            return Ok(customer);
+        }
+        catch (ArgumentException exception)
+        {
+            return BadRequest(new
+            {
+                message = exception.Message
+            });
+        }
+        catch (Exception)
+        {
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new
+                {
+                    message =
+                        "An unexpected server error occurred."
+                });
+        }
+    }
 }

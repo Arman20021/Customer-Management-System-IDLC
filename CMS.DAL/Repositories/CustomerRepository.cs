@@ -49,4 +49,15 @@ public class CustomerRepository
 
         return customer.CustomerId;
     }
+
+    public Customer? GetCustomerById(int customerId)
+    {
+        return context.Customers
+            .AsNoTracking()
+            .Include(customer => customer.CustomerMobiles)
+            .Include(customer => customer.CustomerAddresses)
+            .Include(customer => customer.CustomerDocuments)
+            .FirstOrDefault(customer =>
+                customer.CustomerId == customerId);
+    }
 }

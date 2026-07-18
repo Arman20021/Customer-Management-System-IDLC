@@ -252,4 +252,96 @@ public class CustomerService
                 addressType.Trim(),
                 StringComparison.OrdinalIgnoreCase));
     }
+
+    public GetCustomerResponse? GetCustomerById(int customerId)
+    {
+        if (customerId <= 0)
+        {
+            throw new ArgumentException(
+                "Customer ID must be greater than zero.");
+        }
+
+        Customer? customer =
+            customerRepository.GetCustomerById(customerId);
+
+        if (customer == null)
+        {
+            return null;
+        }
+
+        GetCustomerResponse response =
+            new GetCustomerResponse
+            {
+                CustomerId = customer.CustomerId,
+                CustomerName = customer.CustomerName,
+                EmailAddress = customer.EmailAddress,
+                DateOfBirth = customer.DateOfBirth,
+                NationalIdNumber = customer.NationalIdNumber,
+                Status = customer.Status,
+                CreatedDate = customer.CreatedDate,
+                LastUpdatedDate = customer.LastUpdatedDate,
+
+                MobileNumbers = customer.CustomerMobiles
+                    .OrderBy(mobile =>
+                        mobile.CustomerMobileId)
+                    .Select(mobile =>
+                        new GetCustomerMobileResponse
+                        {
+                            CustomerMobileId =
+                                mobile.CustomerMobileId,
+
+                            MobileNumber =
+                                mobile.MobileNumber,
+
+                            MobileType =
+                                mobile.MobileType
+                        })
+                    .ToList(),
+
+                Addresses = customer.CustomerAddresses
+                    .OrderBy(address =>
+                        address.CustomerAddressId)
+                    .Select(address =>
+                        new GetCustomerAddressResponse
+                        {
+                            CustomerAddressId =
+                                address.CustomerAddressId,
+
+                            AddressType =
+                                address.AddressType,
+
+                            AddressText =
+                                address.AddressText
+                        })
+                    .ToList(),
+
+                Documents = customer.CustomerDocuments
+                    .OrderBy(document =>
+                        document.CustomerDocumentId)
+                    .Select(document =>
+                        new GetCustomerDocumentResponse
+                        {
+                            CustomerDocumentId =
+                                document.CustomerDocumentId,
+
+                            DocumentType =
+                                document.DocumentType,
+
+                            OriginalFileName =
+                                document.OriginalFileName,
+
+                            ContentType =
+                                document.ContentType,
+
+                            FileSizeBytes =
+                                document.FileSizeBytes,
+
+                            UploadedDate =
+                                document.UploadedDate
+                        })
+                    .ToList()
+            };
+
+        return response;
+    }
 }
