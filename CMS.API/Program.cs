@@ -40,13 +40,11 @@ builder.Services.AddScoped<UpdateCustomerService>();
 builder.Services.AddScoped<DeleteCustomerRepository>();
 builder.Services.AddScoped<DeleteCustomerService>();
 
-var app = builder.Build();
+builder.Services .AddScoped<UploadCustomerDocumentRepository>();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+builder.Services.AddScoped<UploadCustomerDocumentService>();
+
+var app = builder.Build();
 
 app.UseSwagger();
 
