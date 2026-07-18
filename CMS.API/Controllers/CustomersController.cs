@@ -10,15 +10,20 @@ public class CustomersController : ControllerBase
 {
     private readonly CustomerService customerService;
     private readonly GetAllCustomersService getAllCustomersService;
+    private readonly UpdateCustomerService updateCustomerService;
 
     public CustomersController(
         CustomerService customerService,
-        GetAllCustomersService getAllCustomersService)
+        GetAllCustomersService getAllCustomersService,
+        UpdateCustomerService updateCustomerService)
     {
         this.customerService = customerService;
 
         this.getAllCustomersService =
             getAllCustomersService;
+
+        this.updateCustomerService =
+            updateCustomerService;
     }
 
     [HttpPost("create-customer")]
@@ -111,6 +116,55 @@ public class CustomersController : ControllerBase
         catch (ArgumentException exception)
         {
             return BadRequest(new
+            {
+                message = exception.Message
+            });
+        }
+        catch (Exception)
+        {
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new
+                {
+                    message =
+                        "An unexpected server error occurred."
+                });
+        }
+    }
+
+    [HttpPut("update-customer/{id:int}")]
+    public IActionResult UpdateCustomer(
+    int id,
+    [FromBody] UpdateCustomerRequest request)
+    {
+        try
+        {
+            UpdateCustomerResponse? response =
+                updateCustomerService.UpdateCustomer(
+                    id,
+                    request);
+
+            if (response == null)
+            {
+                return NotFound(new
+                {
+                    message =
+                        $"Customer with ID {id} was not found."
+                });
+            }
+
+            return Ok(response);
+        }
+        catch (ArgumentException exception)
+        {
+            return BadRequest(new
+            {
+                message = exception.Message
+            });
+        }
+        catch (InvalidOperationException exception)
+        {
+            return Conflict(new
             {
                 message = exception.Message
             });

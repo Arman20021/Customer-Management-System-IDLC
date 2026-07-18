@@ -29,8 +29,12 @@ builder.Services.AddDbContext<CmsDbContext>(options =>
 
 builder.Services.AddScoped<CustomerRepository>();
 builder.Services.AddScoped<CustomerService>();
+
 builder.Services.AddScoped<GetAllCustomersRepository>();
 builder.Services.AddScoped<GetAllCustomersService>();
+
+builder.Services.AddScoped<UpdateCustomerRepository>();
+builder.Services.AddScoped<UpdateCustomerService>();
 
 var app = builder.Build();
 
