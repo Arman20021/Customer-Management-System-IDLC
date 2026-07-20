@@ -12,3 +12,7 @@ public class UpdateCustomerResponse
 
     public string Message { get; set; } = string.Empty;
 }
+
+
+
+//for customer update responce-arman

@@ -86,3 +86,7 @@ public class CustomerDocumentsController : ControllerBase
         }
     }
 }
+
+
+
+//for document -individual
