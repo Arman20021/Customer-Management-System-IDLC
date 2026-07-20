@@ -2,6 +2,27 @@
 
 A RESTful Customer Management System built with ASP.NET Core Web API and SQL Server. The application supports customer creation, retrieval, pagination, updating, deletion, multiple mobile numbers, multiple addresses, customer status management, and customer document metadata.
 
+
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Main Features](#main-features)
+- [Technology Stack](#technology-stack)
+- [Solution Structure](#solution-structure)
+- [Database Schema](#database-schema)
+- [API Endpoints](#api-endpoints)
+- [Example Create Customer Request](#example-create-customer-request)
+- [Error Handling](#error-handling)
+- [Docker Setup](#docker-setup)
+- [Assumptions](#assumptions)
+- [AI Tools Used](#ai-tools-used)
+- [Sample Prompts](#sample-prompts)
+- [Modifications Made](#modifications-made)
+
+---
+
+## Project Overview
+
 The solution follows a simple layered architecture:
 
 ```text
@@ -13,10 +34,6 @@ CMS.DAL
    ↓
 SQL Server
 ```
-
----
-
-## Project Overview
 
 The Customer Management System provides backend APIs for managing customer records.
 
@@ -362,6 +379,58 @@ Swagger displays:
 - Response models
 - Validation rules
 - Interactive “Try it out” support
+
+---
+
+## Docker Setup
+
+This project is fully containerized. You can run it either by building the Docker image from source or by using the pre-built image.
+
+No local .NET SDK, SQL Server, or SQL Server Management Studio installation is required when running with Docker.
+
+### Prerequisites
+
+Install and start:
+
+- Docker Desktop
+
+### Option A — Clone and Build from Source
+
+This option builds the API image using the included `Dockerfile`.
+
+```bash
+git clone https://github.com/Arman20021/Customer-Management-System-IDLC.git
+cd Customer-Management-System-IDLC
+docker compose up --build
+```
+
+### Option B — Use the Pre-built Docker Image
+
+This option uses the pre-built image published on Docker Hub:
+
+```text
+arman20022/cms-api:1.0.0
+```
+
+Run:
+
+```bash
+git clone https://github.com/Arman20021/Customer-Management-System-IDLC.git
+cd Customer-Management-System-IDLC
+docker compose up
+```
+
+Docker Compose downloads the required images when they are not already available locally.
+
+### Open the Application
+
+After both containers have started, open:
+
+```text
+http://localhost:8080/
+```
+
+Swagger UI is available at the root URL.
 
 ---
 
