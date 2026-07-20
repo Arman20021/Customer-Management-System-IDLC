@@ -447,8 +447,10 @@ OpenAI ChatGPT was used as a development-support tool for:
 - Troubleshooting errors
 - Suggesting validation and error-handling approaches
 - Preparing documentation
+
 ---
-##Sample prompts 
+
+## Sample Prompts
 
 ```text
 -Suppose you are a senior .NET Core developer. Give me a proper three-layer architecture for a Customer Management System and identify I will use database first method. 
@@ -465,7 +467,7 @@ OpenAI ChatGPT was used as a development-support tool for:
 -I need exactly one Primary mobile number for every customer. Review my validation logic and tell me whether it handles zero Primary and multiple Primary numbers correctly.
 -I am checking duplicate mobile numbers inside the request and also in the database. Review both checks and tell me whether any duplicate case is still missing.
 -My API returns 500 instead of 409 when I use an email that already exists. Review the controller and service code and tell me where the exception should be handled.
-Get Customer by ID endpoint returns null even though the customer exists in the database. Here is my controller, service, and repository code. Find where the customer data is being lost.
+-Get Customer by ID endpoint returns null even though the customer exists in the database. Here is my controller, service, and repository code. Find where the customer data is being lost.
 -I have created the Get Customer by ID repository method, but mobile numbers, addresses, and documents are not included in the response. Review my query and write the correct Include and mapping code.
 -From now on, I want to create a separate service and repository for each feature. Show me how to implement Get All Customers using this structure.
 -Review my Get All Customers repository code. It should supports pagination, searching, filtering, and sorting. But it is not working while I was checking it with swagger, it shows 400 error, How can I fix this error?
@@ -491,16 +493,15 @@ Get Customer by ID endpoint returns null even though the customer exists in the 
 -My document upload accepts unsupported files such as .exe. Here is my validation method. Rewrite it to allow only PDF, JPG, JPEG, and PNG files with a maximum size of 5 MB.
 -My PUT endpoint shows blank string and integer placeholder values in Swagger. Why does it not automatically show the selected customer's existing information?
 -Review my Entity Framework Core DbContext and confirm whether it can receive different connection strings for local development and Docker.
--Dockerfile and Docker Compose setup for an ASP.NET Core API and SQL Server. Identify anything that would prevent an evaluator from running the project
-with minimal configuration.
+-Dockerfile and Docker Compose setup for an ASP.NET Core API and SQL Server. Identify anything that would prevent an evaluator from running the project with minimal configuration.
 -Dockerfile and Docker Compose setup for an ASP.NET Core API and SQL Server. Identify anything that would prevent an evaluator from running the project with minimal configuration.
 -This Docker build is failing with the following error. Explain the cause and show only the required correction without redesigning the project.
+```
 
-```text
+### Verification of AI-Generated Code
 
----
-### Verification of AI-Generated Code 
 AI-generated code was not used without verification. The code was checked by:
+
 - Reviewing the generated logic manually 
 - Building the application in Visual Studio 
 - Testing API endpoints through Swagger 
@@ -509,9 +510,10 @@ AI-generated code was not used without verification. The code was checked by:
 - Reviewing HTTP status codes and error responses
 - Debugging and correcting compilation and runtime errors
 
----
 ### Modifications Made
- The generated code was modified to match the project requirements, including:
+
+The generated code was modified to match the project requirements, including:
+
 - Adapting code to the existing three-layer architecture  
 - Updating database entity and property names 
 - Adding project-specific validation rules 
@@ -520,17 +522,9 @@ AI-generated code was not used without verification. The code was checked by:
 - Modifying connection strings 
 - Adjusting Swagger configuration 
 - Customizing pagination and response formats
----
-
-
-
 
 ## Author
 
-Add your information here:
-
-
-Name: Md Arman Islam
-Email: mdarmanislam20021@gmail.com
-GitHub:https://github.com/Arman20021
-```
+Name: Md Arman Islam  
+Email: mdarmanislam20021@gmail.com  
+GitHub: https://github.com/Arman20021
