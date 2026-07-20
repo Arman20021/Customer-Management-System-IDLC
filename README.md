@@ -447,6 +447,8 @@ OpenAI ChatGPT was used as a development-support tool for:
 - Troubleshooting errors
 - Suggesting validation and error-handling approaches
 - Preparing documentation
+---
+##Sample prompts 
 
 ```text
 -Suppose you are a senior .NET Core developer. Give me a proper three-layer architecture for a Customer Management System and identify I will use database first method. 
@@ -494,6 +496,9 @@ with minimal configuration.
 -Dockerfile and Docker Compose setup for an ASP.NET Core API and SQL Server. Identify anything that would prevent an evaluator from running the project with minimal configuration.
 -This Docker build is failing with the following error. Explain the cause and show only the required correction without redesigning the project.
 
+```text
+
+---
 ### Verification of AI-Generated Code 
 AI-generated code was not used without verification. The code was checked by:
 - Reviewing the generated logic manually 
@@ -504,7 +509,7 @@ AI-generated code was not used without verification. The code was checked by:
 - Reviewing HTTP status codes and error responses
 - Debugging and correcting compilation and runtime errors
 
-
+---
 ### Modifications Made
  The generated code was modified to match the project requirements, including:
 - Adapting code to the existing three-layer architecture  
@@ -519,11 +524,12 @@ AI-generated code was not used without verification. The code was checked by:
 
 
 
+
 ## Author
 
 Add your information here:
 
-```text
+
 Name: Md Arman Islam
 Email: mdarmanislam20021@gmail.com
 GitHub:https://github.com/Arman20021

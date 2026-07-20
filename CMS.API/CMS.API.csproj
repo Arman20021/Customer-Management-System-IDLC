@@ -22,9 +22,4 @@
     <ProjectReference Include="..\CMS.DAL\CMS.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Middleware\" />
-    <Folder Include="Extensions\" />
-  </ItemGroup>
-
 </Project>

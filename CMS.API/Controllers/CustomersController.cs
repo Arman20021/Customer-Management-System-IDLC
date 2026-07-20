@@ -70,7 +70,7 @@ public class CustomersController : ControllerBase
         }
     }
 
-    [HttpGet("get-customer-by-id/{id:int}")]
+    [HttpGet("get-customer/{id:int}")]
     public IActionResult GetCustomerById(int id)
     {
         try
