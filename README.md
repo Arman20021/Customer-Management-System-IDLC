@@ -196,7 +196,7 @@ Related mobile, address, and document database records are deleted when their pa
 | GET | `/api/customer-management/get-customer/{id}` | Get a customer by ID |
 | GET | `/api/customer-management/get-all-customers` | Get paginated customers, search customer, filter, sort |
 | PUT | `/api/customer-management/update-customer/{id}` | Update a customer |
-| DELETE | `/api/Ccustomer-management/delet-customer/{id}` | Delete a customer |
+| DELETE | `/api/customer-management/delet-customer/{id}` | Delete a customer |
 
 ### Get All Customers Query Parameters
 
@@ -212,7 +212,7 @@ Related mobile, address, and document database records are deleted when their pa
 Example:
 
 ```http
-GET /api/Customers?pageNumber=1&pageSize=10&status=Active&sortBy=CustomerName&sortOrder=asc
+GET /api/customer-management?pageNumber=1&pageSize=10&status=Active&sortBy=CustomerName&sortOrder=asc
 ```
 
 ### Customer Document Endpoint
